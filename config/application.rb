@@ -23,8 +23,8 @@ module Workspace
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
-  require 'tlsmail'
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+
     ActionMailer::Base.delivery_method = :smtp
      config.action_mailer.perform_deliveries = true
      config.action_mailer.default :charset => "utf-8"
