@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -24,17 +25,16 @@ module Workspace
     config.active_record.raise_in_transactional_callbacks = true
     
 
-
-    ActionMailer::Base.delivery_method = :smtp
-     config.action_mailer.perform_deliveries = true
-     config.action_mailer.default :charset => "utf-8"
+    if Rails.env.developement?
+        ActionMailer::Base.delivery_method = :smtp
        ActionMailer::Base.smtp_settings = {
        :address              => "smtp.gmail.com",
        :port                 => 587,
-       :user_name            => "YOUR_EMAIL",
-       :password             => 'PASSWORD',
+       :user_name            => ENV['SENDGRID_USERNAME'],
+       :password             => ENV['SENDGRID_PASSWORD'],
        :authentication       => "plain",
        :enable_starttls_auto => true
        }
+    end
   end
 end
