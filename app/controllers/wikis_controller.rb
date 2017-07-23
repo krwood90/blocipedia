@@ -1,4 +1,7 @@
 class WikisController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :authorize_user, except: [:index, :show, :edit, :update, :new, :create]
+  
   def index
     @wikis = Wiki.all
   end
@@ -32,7 +35,7 @@ class WikisController < ApplicationController
   def update
     @wikis = Wiki.find(params[:id])
     @wikis.title = params[:wiki][:title]
-    @wikis.body = params[:wiki][:title]
+    @wikis.body = params[:wiki][:body]
     
     if @wikis.save
       flash[:notice] = "Wiki was updated!"
@@ -56,4 +59,10 @@ class WikisController < ApplicationController
   end
   
 
+  def authorize_user
+    unless current_user.admin?
+      flash[:alert] = "You can't do that"
+      redirect_to wikis_path
+    end
+  end
 end
