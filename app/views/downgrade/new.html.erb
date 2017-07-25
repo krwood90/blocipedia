@@ -1,0 +1,4 @@
+<%= form_tag downgrade_path do %>
+    <h4>Downgrade to Standard. <br>
+    <%= link_to "Downgrade Your Account", downgrade_create_path, method: :create, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to downgrade?'} %>
+<% end %>

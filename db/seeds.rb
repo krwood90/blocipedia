@@ -26,3 +26,6 @@
    wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
  end
  wiki = Wiki.all
+
+puts "#{User.count} users created!"
+puts "#{Wiki.count} wikis created!"
