@@ -1,5 +1,5 @@
 <h1><%= @wikis.title %></h1>
-<p><%= @wikis.body %></p>
+<p><%= markdown(@wikis.body) %></p>
 
 <h6>
     <small>submitted <%= time_ago_in_words(@wikis.created_at) %> ago by <%= @wikis.user.username %> <br></small>
