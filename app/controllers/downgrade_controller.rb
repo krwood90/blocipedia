@@ -5,6 +5,12 @@ class DowngradeController < ApplicationController
     
     def create
         current_user.standard!
+        @wikis = Wiki.all.each
+        @wikis.each do |wiki|
+            if wiki.user.id == current_user.id
+                wiki.update_attribute(:private, false)
+            end
+        end
         
         flash[:notice] = "You have successfully downgraded your account."
         

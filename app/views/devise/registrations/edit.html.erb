@@ -46,7 +46,7 @@
 <div class="pull-right">
   <% if current_user.standard? %>
     <%= link_to "Upgrade your account to Premium", new_charge_path, :class => 'navbar-link' %>
-  <% if current_user.premium? %>
+  <% else %>
     <%= link_to "Downgrade your account to Standard", new_downgrade_path, :class => 'navbar-link' %>
 </div>
 <% end %>
@@ -57,5 +57,4 @@
 
 <%= link_to "Back", :back %>
 
-<% end %>
 
